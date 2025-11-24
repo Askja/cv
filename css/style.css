@@ -632,3 +632,15 @@ pre.code-block code {
 .code-block.active {
     display: block;
 }
+
+.hero-goals {
+    font-size: 0.9rem;
+    color: var(--textSecondaryLight);
+    margin-top: 4px;
+    line-height: 1.5;
+}
+
+.dark-theme .hero-goals {
+    color: var(--textSecondaryDark);
+}
+
