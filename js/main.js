@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initCodeSamples();
+    initExportButtons();
 });
 
 function closeGallery() {
@@ -105,4 +106,83 @@ function closeGallery() {
     if (!overlay || !img) return;
     overlay.classList.remove('open');
     img.src = '';
+}
+
+function initExportButtons() {
+    const pdfButton = document.querySelector('[data-export="pdf"]');
+    const docxButton = document.querySelector('[data-export="docx"]');
+
+    if (pdfButton) {
+        pdfButton.addEventListener('click', downloadPdf);
+    }
+
+    if (docxButton) {
+        docxButton.addEventListener('click', downloadDocx);
+    }
+}
+
+function getResumeContent() {
+    return document.getElementById('resumeContent');
+}
+
+function downloadPdf() {
+    if (typeof window.html2pdf === 'undefined') {
+        return;
+    }
+
+    const content = getResumeContent();
+    if (!content) {
+        return;
+    }
+
+    const options = {
+        margin: 0.5,
+        filename: 'egor-amiral-resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    window.html2pdf().set(options).from(content).save();
+}
+
+function downloadDocx() {
+    if (typeof window.htmlDocx === 'undefined') {
+        return;
+    }
+
+    const content = getResumeContent();
+    if (!content) {
+        return;
+    }
+
+    const styles = collectStylesForDocx();
+    const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}</style></head><body>${content.innerHTML}</body></html>`;
+
+    const blob = window.htmlDocx.asBlob(html);
+    triggerDownload(blob, 'egor-amiral-resume.docx');
+}
+
+function collectStylesForDocx() {
+    let styles = '';
+    Array.from(document.styleSheets).forEach(sheet => {
+        try {
+            Array.from(sheet.cssRules || []).forEach(rule => {
+                styles += rule.cssText;
+            });
+        } catch (e) {
+        }
+    });
+    return styles;
+}
+
+function triggerDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
 }

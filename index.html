@@ -42,7 +42,7 @@
     <span id="theme-label">Светлая</span>
 </button>
 
-<div class="page">
+<div class="page" id="resumeContent">
     <section class="surface hero">
         <div>
             <h1 class="hero-title">Егор Амирал</h1>
@@ -58,14 +58,26 @@
                 <span class="badge">Удалённый формат работы</span>
             </div>
             <div class="hero-actions">
-                <a class="btn-pill" href="mailto:eamiral@ya.ru">
-                    <i class="ms-Icon ms-Icon--Mail" aria-hidden="true"></i>
-                    Написать на почту
-                </a>
-                <a class="btn-pill secondary" href="https://t.me/askja_tlgrm" target="_blank" rel="noreferrer">
-                    <i class="ms-Icon ms-Icon--Message" aria-hidden="true"></i>
-                    Связаться в Telegram
-                </a>
+                <div class="hero-actions__row">
+                    <a class="btn-pill" href="mailto:eamiral@ya.ru">
+                        <i class="ms-Icon ms-Icon--Mail" aria-hidden="true"></i>
+                        Написать на почту
+                    </a>
+                    <a class="btn-pill secondary" href="https://t.me/askja_tlgrm" target="_blank" rel="noreferrer">
+                        <i class="ms-Icon ms-Icon--Message" aria-hidden="true"></i>
+                        Связаться в Telegram
+                    </a>
+                </div>
+                <div class="hero-actions__row hero-actions__downloads">
+                    <button class="btn-pill secondary" type="button" data-export="pdf">
+                        <i class="ms-Icon ms-Icon--Download" aria-hidden="true"></i>
+                        Скачать PDF
+                    </button>
+                    <button class="btn-pill secondary" type="button" data-export="docx">
+                        <i class="ms-Icon ms-Icon--DownloadDocument" aria-hidden="true"></i>
+                        Скачать DOCX
+                    </button>
+                </div>
             </div>
         </div>
         <aside class="sidebar-card">
@@ -935,6 +947,18 @@ final class FriendStatusService
 <script type="text/javascript" src="js/csharp.min.js"></script>
 <script type="text/javascript" src="js/javascript.min.js"></script>
 <script type="text/javascript" src="js/php.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html-docx-js/0.3.1/html-docx.js"
+        integrity="sha512-v8yiIoR8sEYl6tQJtXMhoiV7r4OVIj3oPJR0u8uYoMy0lWPjtVTopMsyZUOh6xBpc0rXG/6CmCiyxTOAcTQAvg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
 <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
